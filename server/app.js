@@ -1,13 +1,16 @@
+// Dependecias
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+
+const userController = require("./controllers/usersController");
+
+// Instancio express
 const app = express();
 
-// Explicar use
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// Explicar cors
 app.use(cors());
 
 app.get("/", function(req, res) {
@@ -20,35 +23,8 @@ app.get("/live", function(req, res) {
   });
 });
 
-app.post("/users", function(req, res) {
-  console.log(req.body);
-  res.status(201).json({
-    result: "Created"
-  });
-});
-
-app.get("/users", function(req, res) {
-  res.status(200).json([
-    {
-      id: 1,
-      username: "mgrozado",
-      firstName: "Maximiliano",
-      lastName: "Rozado"
-    },
-    {
-      id: 2,
-      username: "cesmunoz",
-      firstName: "Cesar",
-      lastName: "Muñoz"
-    },
-    {
-      id: 3,
-      username: "jsmith",
-      firstName: "John",
-      lastName: "Smith"
-    }
-  ]);
-});
+app.post("/users", userController.saveUser);
+app.get("/users", userController.getUsers);
 
 app.delete("/users/:id", function(req, res) {
   res.status(200).json({
