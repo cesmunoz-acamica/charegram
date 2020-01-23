@@ -27,6 +27,55 @@ app.post("/users", function(req, res) {
   });
 });
 
-app.listen(3001, function() {
-  console.log("Listening in port 3001");
+app.get("/users", function(req, res) {
+  res.status(200).json([
+    {
+      id: 1,
+      username: "mgrozado",
+      firstName: "Maximiliano",
+      lastName: "Rozado"
+    },
+    {
+      id: 2,
+      username: "cesmunoz",
+      firstName: "Cesar",
+      lastName: "Muñoz"
+    },
+    {
+      id: 3,
+      username: "jsmith",
+      firstName: "John",
+      lastName: "Smith"
+    }
+  ]);
+});
+
+app.delete("/users/:id", function(req, res) {
+  res.status(200).json({
+    success: true
+  });
+});
+
+app.put("/users/:id", function(req, res) {
+  res.status(200).json({
+    success: true
+  });
+});
+
+app.get("/users/:id", function(req, res) {
+  res.status(200).json({
+    id: 1,
+    username: "mgrozado",
+    firstName: "Maximiliano",
+    lastName: "Rozado"
+  });
+});
+
+// auth
+// post
+// comment
+// profile
+
+app.listen(4000, function() {
+  console.log("Listening in port 4000");
 });
