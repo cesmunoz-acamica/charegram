@@ -1,27 +1,16 @@
+const db = require('../utils/connection');
+
 function Controller() {
   this.getUsers = function (req, res) {
-    const users = [
-      {
-        id: 1,
-        username: "mgrozado",
-        firstName: "Maximiliano",
-        lastName: "Rozado"
-      },
-      {
-        id: 2,
-        username: "cesmunoz",
-        firstName: "Cesar",
-        lastName: "Muñoz"
-      },
-      {
-        id: 3,
-        username: "jsmith",
-        firstName: "John",
-        lastName: "Smith"
+    db.query('SELECT * FROM users', function (error, result) {
+      if (error) {
+        console.log(error);
+        res.status(500).send(error);
+        return;
       }
-    ];
 
-    res.status(200).json(users);
+      res.status(200).json(result);
+    });
   }
 
   this.saveUser = function (req, res) {
