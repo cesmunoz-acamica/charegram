@@ -5,35 +5,36 @@ async function getUserList() {
   return await db.query('SELECT * FROM users');
 }
 
-// CLASE
-function Controller() {
-  this.getUsers = async (req, res) => {
+class Controller {
+  constructor() { }
+
+  async getUsers(req, res) {
     const result = await getUserList();
     return res.status(200).json(result);
   }
 
-  this.saveUser = (req, res) => {
+  saveUser(req, res) {
     console.log(req.body);
     res.status(201).json({
       result: "Created"
     });
   }
 
-  this.getById = (req, res) => {
+  getById(req, res) {
     console.log(req.body);
     res.status(201).json({
       result: "Created"
     });
   }
 
-  this.deleteById = (req, res) => {
+  deleteById(req, res) {
     console.log(req.body);
     res.status(201).json({
       result: "Created"
     });
   }
 
-  this.updateUser = (req, res) => {
+  updateUser(req, res) {
     console.log(req.body);
     res.status(201).json({
       result: "Created"
