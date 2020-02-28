@@ -1,24 +1,15 @@
 const db = require('../utils/db');
 
 // FUNCTION
-function getUserList() {
-  return new Promise((resolve, reject) => {
-    db.query('SELECT * FROM users', (error, result) => {
-      if (error) {
-        reject(error);
-      }
-
-      resolve(result);
-    });
-  });
+async function getUserList() {
+  return await db.query('SELECT * FROM users');
 }
 
 // CLASE
 function Controller() {
-  this.getUsers = (req, res) => {
-    getUserList()
-      .then((data) => res.status(200).json(data))
-      .catch((error) => res.status(500).send(error))
+  this.getUsers = async (req, res) => {
+    const result = await getUserList();
+    return res.status(200).json(result);
   }
 
   this.saveUser = (req, res) => {
