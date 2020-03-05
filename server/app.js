@@ -3,6 +3,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+const dotenv = require('dotenv');
+dotenv.config()
+
 const routes = require("./router");
 
 // Instancio express
@@ -19,4 +22,4 @@ app.use("/", routes);
 // comment
 // profile
 
-app.listen(4000, () => console.log("Listening in port 4000"));
+app.listen(process.env.APP_PORT, () => console.log(`Listening in port ${process.env.APP_PORT}`));
