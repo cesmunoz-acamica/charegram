@@ -1,15 +1,12 @@
-const db = require('../utils/db');
-
-// FUNCTION
-async function getUserList() {
-  return await db.query('SELECT * FROM users');
-}
+const UserService = require('../services/userService');
+const service = new UserService()
 
 class Controller {
+
   constructor() { }
 
   async getUsers(req, res) {
-    const result = await getUserList();
+    const result = await service.getUserList();
     return res.status(200).json(result);
   }
 
